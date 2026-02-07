@@ -1,0 +1,13 @@
+{
+    "metrics": {
+        "accuracy": 0.8311,
+        "precision": 0.8993968636911942,
+        "recall": 0.7456,
+        "f1_score": 0.8153089119737561,
+        "roc_auc": 0.9219168399999998,
+        "training_time": 104.56729912757874
+    },
+    "model": "BiLSTM",
+    "embedding": "Word2Vec",
+    "timestamp": "2026-02-07 23:29:23"
+}

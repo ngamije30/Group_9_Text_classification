@@ -1,0 +1,15 @@
+{
+    "metrics": {
+        "accuracy": 0.8718,
+        "precision": 0.8992697594501718,
+        "recall": 0.8374,
+        "f1_score": 0.8672328086164043,
+        "roc_auc": 0.9467944399999999,
+        "training_time": 368.0516800880432
+    },
+    "timestamp": "2026-02-07 23:57:55",
+    "model": "BiLSTM + GloVe",
+    "embedding": "GloVe",
+    "embed_dim": 100,
+    "maxlen": 300
+}
