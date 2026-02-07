@@ -1,0 +1,32 @@
+{
+    "metrics": {
+        "accuracy": 0.7986,
+        "precision": 0.7997991967871486,
+        "recall": 0.7966,
+        "f1_score": 0.7981963927855712,
+        "roc_auc": 0.8781414399999999,
+        "training_time": 18.22538161277771
+    },
+    "timestamp": "2026-02-07 13:11:14",
+    "model": "Logistic Regression + GloVe",
+    "embedding": "GloVe",
+    "embedding_dim": 100,
+    "glove_path": "C:\\Users\\ngami\\Downloads\\Group_9_Text_classification\\data\\embeddings\\glove.6B.100d.txt",
+    "best_params": {
+        "C": 100,
+        "class_weight": null,
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": null,
+        "max_iter": 1000,
+        "multi_class": "deprecated",
+        "n_jobs": null,
+        "penalty": "l2",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 0.0001,
+        "verbose": 0,
+        "warm_start": false
+    }
+}

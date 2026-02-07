@@ -1,0 +1,44 @@
+# Data files (too large for git)
+data/raw/*.csv
+data/embeddings/*.txt
+data/embeddings/*.bin
+*.bin
+
+# Model files (binary, regenerable)
+*.pkl
+*.h5
+results/**/*.pkl
+results/**/*.bin
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large binary outputs
+*.pdf
+*.png (keep figures/ folder but ignore if needed)
+
+# Temporary files
+*.log
+*.tmp
