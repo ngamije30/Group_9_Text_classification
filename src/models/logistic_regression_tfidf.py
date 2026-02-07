@@ -1,6 +1,6 @@
 """
 Logistic Regression with TF-IDF Embeddings
-Group 9 - Member 1 (Logistic Regression)
+Group 9 - Davy (Logistic Regression)
 """
 
 import numpy as np

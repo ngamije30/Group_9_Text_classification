@@ -1,6 +1,6 @@
 """
 Compare Results Across All Embeddings
-Group 9 - Member 1 (Logistic Regression)
+Group 9 - Davy (Logistic Regression)
 """
 
 import json
@@ -213,7 +213,7 @@ def generate_summary_report(results):
     with open(f'{RESULTS_DIR}summary_report.txt', 'w') as f:
         f.write("="*80 + "\n")
         f.write("LOGISTIC REGRESSION - SUMMARY REPORT\n")
-        f.write("Group 9 - Member 1\n")
+        f.write("Group 9 - Davy\n")
         f.write("="*80 + "\n\n")
         
         for embedding, result in results.items():

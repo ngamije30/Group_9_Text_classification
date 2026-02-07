@@ -1,6 +1,6 @@
 """
 Text Preprocessing Utilities for IMDB Sentiment Classification
-Group 9 - Member 1 (Logistic Regression)
+Group 9 - Davy (Logistic Regression)
 """
 
 import re

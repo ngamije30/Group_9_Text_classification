@@ -25,7 +25,7 @@ Each team member implements **one model architecture** evaluated across **three 
 
 | Member | Model Architecture | Embeddings Evaluated |
 |--------|-------------------|---------------------|
-| **Member 1** | Logistic Regression | TF-IDF, GloVe, Word2Vec Skip-gram |
+| **Davy** | Logistic Regression | TF-IDF, GloVe, Word2Vec Skip-gram |
 | Member 2 | LSTM | TF-IDF, GloVe, Word2Vec |
 | Member 3 | GRU | TF-IDF, GloVe, Word2Vec |
 | Member 4 | RNN | TF-IDF, GloVe, Word2Vec |
@@ -59,7 +59,7 @@ See [notebooks/01_EDA_IMDB.ipynb](notebooks/01_EDA_IMDB.ipynb) for detailed visu
 
 ## Implementation Details
 
-### Member 1: Logistic Regression
+### Davy: Logistic Regression
 
 **Model:** Logistic Regression with L2 regularization  
 **Embeddings Evaluated:** TF-IDF, GloVe (100d), Word2Vec Skip-gram (100d)
@@ -163,9 +163,9 @@ Group_9_Text_classification/
 │   ├── preprocessing.py              # Text preprocessing utilities
 │   ├── evaluation.py                 # Metrics, visualization functions
 │   └── models/
-│       ├── logistic_regression_tfidf.py     # Member 1: LR + TF-IDF
-│       ├── logistic_regression_glove.py     # Member 1: LR + GloVe
-│       ├── logistic_regression_word2vec.py  # Member 1: LR + Word2Vec
+│       ├── logistic_regression_tfidf.py     # Davy: LR + TF-IDF
+│       ├── logistic_regression_glove.py     # Davy: LR + GloVe
+│       ├── logistic_regression_word2vec.py  # Davy: LR + Word2Vec
 │       └── compare_results.py               # Generate comparison tables
 │
 ├── notebooks/
@@ -245,7 +245,7 @@ python -c "import nltk; nltk.download('stopwords')"
 jupyter notebook notebooks/01_EDA_IMDB.ipynb
 ```
 
-### 2. Train Models (Member 1)
+### 2. Train Models (Davy)
 Navigate to the models directory:
 ```bash
 cd src/models
@@ -368,7 +368,7 @@ All experiments use `RANDOM_SEED=42` for reproducibility. Results may vary sligh
 
 ## Team Contributions
 
-### Member 1: Logistic Regression Implementation
+### Davy: Logistic Regression Implementation
 - Implemented Logistic Regression with 3 embeddings (TF-IDF, GloVe, Word2Vec)
 - Conducted EDA with 4+ visualizations
 - Performed hyperparameter tuning via GridSearchCV
