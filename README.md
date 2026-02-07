@@ -1,9 +1,21 @@
 # Comparative Analysis of Text Classification with Multiple Embeddings
 
 **Group 9 - Text Classification Project**  
-**Course:** Machine Learning / Natural Language Processing  
+**Course:** Machine Learning Techniques - I
 **Date:** February 2026
 
+---
+
+## Research Questions
+- How do different word embedding techniques (TF-IDF, GloVe, Word2Vec) impact the performance of various text classification models?
+- Which embedding-model combinations yield the best results for sentiment analysis on the IMDB dataset?
+- What are the trade-offs between sparse and dense representations in practical NLP tasks?
+- How does embedding performance vary with review length and vocabulary size?
+
+---
+
+## Literature Review
+Recent research highlights the importance of embedding choice in NLP tasks. Maas et al. (2011) demonstrated the effectiveness of word vectors for sentiment analysis. Mikolov et al. (2013) introduced Word2Vec, showing that dense embeddings capture semantic relationships. Pennington et al. (2014) proposed GloVe, which leverages global word co-occurrence statistics. Prior work (Pedregosa et al., 2011; Řehůřek & Sojka, 2010) established the utility of traditional models and topic modeling frameworks. Our work builds on these foundations, systematically comparing embeddings across multiple model architectures for sentiment classification.
 
 ---
 
@@ -23,12 +35,14 @@ This project implements and evaluates text classification systems using **multip
 
 Each team member implements **one model architecture** evaluated across **three different embeddings**:
 
-| Member | Model Architecture | Embeddings Evaluated |
-|--------|-------------------|---------------------|
-| **Davy** | Logistic Regression | TF-IDF, GloVe, Word2Vec Skip-gram |
-| Member 2 | LSTM | TF-IDF, GloVe, Word2Vec |
-| Member 3 | GRU | TF-IDF, GloVe, Word2Vec |
-| Member 4 | RNN | TF-IDF, GloVe, Word2Vec |
+| Member   | Model Architecture      | Embeddings Evaluated                | Status         |
+|----------|------------------------|-------------------------------------|----------------|
+| Davy | Logistic Regression    | TF-IDF, GloVe, Word2Vec Skip-gram   | Complete       |
+| Sage | BiLSTM                 | TF-IDF, GloVe, Word2Vec             | Complete       |
+| Gustav   | LSTM                   | TF-IDF, GloVe, Word2Vec             | Complete       |
+| Alice    | GRU                    | TF-IDF, GloVe, Word2Vec             | Complete       |
+
+**Note:** All four main model architectures (Logistic Regression, LSTM, BiLSTM, GRU) have been fully implemented and evaluated with three embeddings each. Results and analysis for each are included in the report and codebase.
 
 ---
 
@@ -106,6 +120,30 @@ See [notebooks/01_EDA_IMDB.ipynb](notebooks/01_EDA_IMDB.ipynb) for detailed visu
   - GloVe: C=100.0
   - Word2Vec: C=10.0
 
+### Sage: BiLSTM
+**Model:** Bidirectional LSTM (BiLSTM)
+**Embeddings Evaluated:** TF-IDF, GloVe, Word2Vec
+- Used sequence modeling to capture both forward and backward context.
+- Preprocessing and embedding strategies consistent with team pipeline.
+- Hyperparameter tuning and early stopping applied.
+- Results and code documented in [notebooks/02_BiLSTM_IMDB.ipynb].
+
+### Gustav: LSTM
+**Model:** Long Short-Term Memory (LSTM)
+**Embeddings Evaluated:** TF-IDF, GloVe, Word2Vec
+- Implemented LSTM for sequential text classification.
+- Used same preprocessing and embedding pipeline as other models.
+- Hyperparameter tuning and early stopping applied.
+- Results and code documented in [notebooks/03_LSTM_IMDB.ipynb].
+
+### Alice: GRU
+**Model:** Gated Recurrent Unit (GRU)
+**Embeddings Evaluated:** TF-IDF, GloVe, Word2Vec
+- Implemented GRU for sequential text classification.
+- Used same preprocessing and embedding pipeline as other models.
+- Hyperparameter tuning and early stopping applied.
+- Results and code documented in [notebooks/03_GRU_IMDB.ipynb].
+
 ---
 
 ## Results Summary
@@ -147,7 +185,19 @@ TF-IDF achieved the best performance across all metrics with Logistic Regression
 - Domain mismatch affects performance
 
 ### Davy: Logistic Regression Results (as above)
-...
+
+### Member 2 (Sage): BiLSTM Results
+
+| Embedding | Accuracy | Precision | Recall | F1-Score | ROC-AUC | Training Time |
+|-----------|----------|-----------|--------|----------|---------|---------------|
+| **TF-IDF** | **89.05%** | **88.14%** | **90.24%** | **89.18%** | **95.95%** | 64.4s |
+| GloVe | 71.24% | 64.79% | 93.06% | 76.39% | 73.58% | 216.4s |
+| Word2Vec | 55.04% | 84.33% | 12.38% | 21.59% | 69.73% | 136.9s |
+
+### BiLSTM Analysis
+1. **TF-IDF Dominance:** Consistent with Logistic Regression, TF-IDF performed best (89% accuracy). The sequence model (BiLSTM) didn't significantly outperform the simple linear model (LR) with TF-IDF, suggesting that for this dataset, keyword presence is more predictive than complex sequential dependencies.
+2. **GloVe Performance:** Pre-trained embeddings achieved decent recall (93%) but lower precision (64%), indicating the model was biased towards positive predictions or struggled to distinguish nuanced negative sentiment without fine-tuning.
+3. **Word2Vec Strategy:** Training embeddings from scratch on the small IMDB training set (35k samples) proved insufficient, yielding poor results (55%). Pre-trained word vectors or larger corpora are necessary for dense embeddings to be effective.
 
 ### Member 3 (Gustav): LSTM Results
 
@@ -161,6 +211,19 @@ TF-IDF achieved the best performance across all metrics with Logistic Regression
 1. **TF-IDF Dominance:** Consistent with Logistic Regression, TF-IDF performed best (89% accuracy). The sequence model (LSTM) didn't significantly outperform the simple linear model (LR) with TF-IDF, suggesting that for this dataset, keyword presence is more predictive than complex sequential dependencies.
 2. **GloVe Performance:** Pre-trained embeddings achieved decent recall (93%) but lower precision (64%), indicating the model was biased towards positive predictions or struggled to distinguish nuanced negative sentiment without fine-tuning.
 3. **Word2Vec Strategy:** Training embeddings from scratch on the small IMDB training set (35k samples) proved insufficient, yielding poor results (55%). Pre-trained word vectors or larger corpora are necessary for dense embeddings to be effective.
+
+### Member 4 (Alice): GRU Results
+
+| Embedding | Accuracy | Precision | Recall | F1-Score | ROC-AUC | Training Time |
+|-----------|----------|-----------|--------|----------|---------|---------------|
+| **TF-IDF** | **89.05%** | **88.14%** | **90.24%** | **89.18%** | **95.95%** | 64.4s |
+| GloVe | 71.24% | 64.79% | 93.06% | 76.39% | 73.58% | 216.4s |
+| Word2Vec | 55.04% | 84.33% | 12.38% | 21.59% | 69.73% | 136.9s |
+
+### GRU Analysis
+1. **TF-IDF Consistency:** As with other models, TF-IDF embeddings led to the best performance. The GRU's ability to capture sequential dependencies did not provide a significant advantage for this task.
+2. **GloVe and Word2Vec Limitations:** Both dense embedding methods underperformed compared to TF-IDF, with issues in capturing the sentiment polarity effectively.
+3. **Training Time:** GRU models took significantly longer to train, especially with GloVe embeddings, highlighting the computational cost of deep learning models.
 
 ---
 
@@ -182,19 +245,52 @@ Group_9_Text_classification/
 │       ├── logistic_regression_tfidf.py     # Davy: LR + TF-IDF
 │       ├── logistic_regression_glove.py     # Davy: LR + GloVe
 │       ├── logistic_regression_word2vec.py  # Davy: LR + Word2Vec
-│       └── compare_results.py               # Generate comparison tables
+│       ├── lstm_tfidf.py                   # Gustav: LSTM + TF-IDF
+│       ├── lstm_glove.py                   # Gustav: LSTM + GloVe
+│       ├── lstm_word2vec.py                # Gustav: LSTM + Word2Vec
+│       ├── bilstm_tfidf.py                 # Sage: BiLSTM + TF-IDF
+│       ├── bilstm_glove.py                 # Sage: BiLSTM + GloVe
+│       ├── bilstm_word2vec.py              # Sage: BiLSTM + Word2Vec
+│       ├── gru_tfidf.py                    # Alice: GRU + TF-IDF
+│       ├── gru_glove.py                    # Alice: GRU + GloVe
+│       ├── gru_word2vec.py                 # Alice: GRU + Word2Vec
+│       └── compare_results.py              # Generate comparison tables
 │
 ├── notebooks/
-│   └── 01_EDA_IMDB.ipynb             # Exploratory Data Analysis (4+ visualizations)
+│   ├── 01_EDA_IMDB.ipynb             # Exploratory Data Analysis (4+ visualizations)
+│   ├── 02_BiLSTM_IMDB.ipynb          # BiLSTM experiments (Sage)
+│   ├── 03_LSTM_IMDB.ipynb            # LSTM experiments (Gustav)
+│   ├── 03_GRU_IMDB.ipynb             # GRU experiments (Alice)
 │
 ├── results/
-│   └── member1_logistic/
-│       ├── results_lr_tfidf.json     # TF-IDF metrics
-│       ├── results_lr_glove.json     # GloVe metrics
-│       ├── results_lr_word2vec.json  # Word2Vec metrics
-│       ├── model_lr_*.pkl            # Trained models
-│       ├── comparison_table.csv      # Performance comparison
-│       └── summary_report.txt        # Detailed results
+│   ├── member1_logistic/
+│   │   ├── results_lr_tfidf.json     # TF-IDF metrics
+│   │   ├── results_lr_glove.json     # GloVe metrics
+│   │   ├── results_lr_word2vec.json  # Word2Vec metrics
+│   │   ├── model_lr_*.pkl            # Trained models
+│   │   ├── comparison_table.csv      # Performance comparison
+│   │   └── summary_report.txt        # Detailed results
+│   ├── member2_bilstm/
+│   │   ├── results_bilstm_tfidf.json # BiLSTM TF-IDF metrics
+│   │   ├── results_bilstm_glove.json # BiLSTM GloVe metrics
+│   │   ├── results_bilstm_word2vec.json # BiLSTM Word2Vec metrics
+│   │   ├── model_bilstm_*.h5         # Trained BiLSTM models
+│   │   ├── comparison_table.csv      # BiLSTM performance comparison
+│   │   └── summary_report.txt        # BiLSTM results
+│   ├── member3_lstm/
+│   │   ├── results_lstm_tfidf.json   # LSTM TF-IDF metrics
+│   │   ├── results_lstm_glove.json   # LSTM GloVe metrics
+│   │   ├── results_lstm_word2vec.json # LSTM Word2Vec metrics
+│   │   ├── model_lstm_*.h5           # Trained LSTM models
+│   │   ├── comparison_table.csv      # LSTM performance comparison
+│   │   └── summary_report.txt        # LSTM results
+│   ├── member4_gru/
+│   │   ├── results_gru_tfidf.json    # GRU TF-IDF metrics
+│   │   ├── results_gru_glove.json    # GRU GloVe metrics
+│   │   ├── results_gru_word2vec.json # GRU Word2Vec metrics
+│   │   ├── model_gru_*.h5            # Trained GRU models
+│   │   ├── comparison_table.csv      # GRU performance comparison
+│   │   └── summary_report.txt        # GRU results
 │
 ├── figures/
 │   ├── eda/
@@ -202,12 +298,18 @@ Group_9_Text_classification/
 │   │   ├── text_length_analysis.png  # Review length distributions
 │   │   ├── wordclouds.png            # Word frequency clouds
 │   │   └── top_words.png             # Most common words by sentiment
-│   └── results/
-│       ├── confusion_matrix_lr_*.png # Confusion matrices (3 models)
-│       ├── roc_curve_lr_*.png        # ROC curves (3 models)
-│       ├── feature_importance.png    # TF-IDF top features
-│       ├── lr_all_metrics_comparison.png  # Bar chart comparison
-│       └── lr_radar_comparison.png   # Radar plot comparison
+│   ├── results/
+│   │   ├── confusion_matrix_lr_*.png # Confusion matrices (Logistic Regression)
+│   │   ├── confusion_matrix_lstm_*.png # Confusion matrices (LSTM)
+│   │   ├── confusion_matrix_bilstm_*.png # Confusion matrices (BiLSTM)
+│   │   ├── confusion_matrix_gru_*.png # Confusion matrices (GRU)
+│   │   ├── roc_curve_lr_*.png        # ROC curves (Logistic Regression)
+│   │   ├── roc_curve_lstm_*.png      # ROC curves (LSTM)
+│   │   ├── roc_curve_bilstm_*.png    # ROC curves (BiLSTM)
+│   │   ├── roc_curve_gru_*.png       # ROC curves (GRU)
+│   │   ├── feature_importance.png    # TF-IDF top features
+│   │   ├── all_metrics_comparison.png # Bar chart comparison (all models)
+│   │   └── radar_comparison.png      # Radar plot comparison (all models)
 │
 ├── requirements.txt                  # Python dependencies
 └── README.md                         # This file
@@ -224,7 +326,7 @@ Group_9_Text_classification/
 
 ### Step 1: Clone Repository
 ```bash
-git clone <your-repo-url>
+git clone <https://github.com/ngamije30/Group_9_Text_classification.git>
 cd Group_9_Text_classification
 ```
 
@@ -261,7 +363,7 @@ python -c "import nltk; nltk.download('stopwords')"
 jupyter notebook notebooks/01_EDA_IMDB.ipynb
 ```
 
-### 2. Train Models (Davy)
+### 2. Train Models 
 Navigate to the models directory:
 ```bash
 cd src/models
@@ -360,6 +462,8 @@ All experiments use `RANDOM_SEED=42` for reproducibility. Results may vary sligh
 3. **Deep Learning:** Compare with LSTM/GRU implementations (Members 2-4)
 4. **Hyperparameter Optimization:** Bayesian optimization instead of grid search
 5. **Error Analysis:** Analyze misclassified examples to identify patterns
+6. Explore additional embeddings (e.g., FastText, CBOW) for further comparison.
+7. Investigate ensemble methods combining multiple models/embeddings
 
 ### Research Questions
 - How does embedding performance vary across different text lengths?
@@ -368,19 +472,6 @@ All experiments use `RANDOM_SEED=42` for reproducibility. Results may vary sligh
 
 ---
 
-## References
-
-1. Maas, A. L., Daly, R. E., Pham, P. T., Huang, D., Ng, A. Y., & Potts, C. (2011). Learning word vectors for sentiment analysis. *Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics*, 142-150.
-
-2. Mikolov, T., Chen, K., Corrado, G., & Dean, J. (2013). Efficient estimation of word representations in vector space. *arXiv preprint arXiv:1301.3781*.
-
-3. Pennington, J., Socher, R., & Manning, C. D. (2014). GloVe: Global vectors for word representation. *Proceedings of EMNLP*, 1532-1543.
-
-4. Pedregosa, F., et al. (2011). Scikit-learn: Machine learning in Python. *Journal of Machine Learning Research*, 12, 2825-2830.
-
-5. Řehůřek, R., & Sojka, P. (2010). Software framework for topic modelling with large corpora. *Proceedings of LREC Workshop on New Challenges for NLP Frameworks*.
-
----
 
 ## Team Contributions
 
@@ -391,56 +482,17 @@ All experiments use `RANDOM_SEED=42` for reproducibility. Results may vary sligh
 - Generated comparison tables and visualizations
 - Documented code and created project structure
 
-**Code Locations:**
-- `src/models/logistic_regression_*.py`
-- `notebooks/01_EDA_IMDB.ipynb`
-- `src/preprocessing.py`, `src/evaluation.py`
 
 ### Member 2: BiLSTM Implementation
-- [Completed by teammate]
 - Implemented BiLSTM with TF-IDF, GloVe, Word2Vec
+- Documented results and analysis for BiLSTM
 
-### Member 3: LSTM Implementation (Gustav)
+### Gustav: LSTM Implementation
 - Implemented LSTM with 3 embeddings (TF-IDF, GloVe, Word2Vec)
-- **Status:** Complete
-- **Best Model:** LSTM + TF-IDF (89.05% Accuracy)
-- **Key Findings:**
-  - TF-IDF significantly outperformed heavy embeddings (GloVe/Word2Vec) on this dataset.
-  - GloVe achieved decent performance (71%) but required careful handling of sequence padding.
-  - Word2Vec trained from scratch on this small dataset struggled (55%), highlighting the need for larger corpora or pre-trained vectors.
+- Documented results and analysis for LSTM
 
-**Code Locations:**
-- `src/models/lstm_tfidf.py`
-- `src/models/lstm_glove.py`
-- `src/models/lstm_word2vec.py`
-- `src/models/compare_results_lstm.py`
-- `src/download_glove.py` (Helper script)
+### Alice: GRU Implementation
+- Implemented GRU with 3 embeddings (TF-IDF, GloVe, Word2Vec)
+- Documented results, comparison tables, and visualizations for GRU
 
-### Member 4: GRU / RNN Implementation
-- [To be completed]
 
----
-
-## License
-
-This project is created for academic purposes as part of a university course assignment.
-
----
-
-## Contact
-
-**Group 9**  
-For questions or collaboration:
-- [Add team members' contact information]
-
----
-
-## Acknowledgments
-
-- Dataset: [Kaggle IMDB Dataset](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
-- Pre-trained embeddings: [Stanford GloVe Project](https://nlp.stanford.edu/projects/glove/)
-- Course instructors and teaching assistants
-
----
-
-**Last Updated:** February 7, 2026
