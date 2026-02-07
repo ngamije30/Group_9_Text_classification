@@ -1,0 +1,10 @@
+{
+    "model": "GRU",
+    "embedding": "TF-IDF",
+    "accuracy": 0.8914,
+    "precision": 0.88875645609853,
+    "recall": 0.8948,
+    "f1_score": 0.8917679888379509,
+    "roc_auc": 0.9591577999999998,
+    "training_time": 130.1765992641449
+}

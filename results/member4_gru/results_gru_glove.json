@@ -1,0 +1,10 @@
+{
+    "model": "GRU",
+    "embedding": "GloVe",
+    "accuracy": 0.865,
+    "precision": 0.8727532679738562,
+    "recall": 0.8546,
+    "f1_score": 0.8635812449474535,
+    "roc_auc": 0.94153964,
+    "training_time": 2205.658472061157
+}
