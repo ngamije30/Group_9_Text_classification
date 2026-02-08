@@ -1,0 +1,16 @@
+{
+    "metrics": {
+        "accuracy": 0.8905,
+        "precision": 0.8814221527642118,
+        "recall": 0.9024,
+        "f1_score": 0.8917877260598873,
+        "roc_auc": 0.95951258,
+        "training_time": 64.4334568977356
+    },
+    "timestamp": "2026-02-08 18:27:01",
+    "model": "LSTM + TF-IDF",
+    "embedding": "TF-IDF",
+    "max_features": 5000,
+    "lstm_units": 64,
+    "epochs_trained": 4
+}

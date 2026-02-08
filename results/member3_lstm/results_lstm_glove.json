@@ -1,0 +1,17 @@
+{
+    "metrics": {
+        "accuracy": 0.7124,
+        "precision": 0.6478696741854637,
+        "recall": 0.9306,
+        "f1_score": 0.7639139714332622,
+        "roc_auc": 0.7357761999999999,
+        "training_time": 216.43271684646606
+    },
+    "timestamp": "2026-02-08 20:53:10",
+    "model": "LSTM + GloVe",
+    "embedding": "GloVe",
+    "embed_dim": 100,
+    "maxlen": 300,
+    "lstm_units": 64,
+    "epochs_trained": 9
+}

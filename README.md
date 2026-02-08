@@ -146,6 +146,22 @@ TF-IDF achieved the best performance across all metrics with Logistic Regression
 - Average pooling may lose important sentiment information
 - Domain mismatch affects performance
 
+### Davy: Logistic Regression Results (as above)
+...
+
+### Member 3 (Gustav): LSTM Results
+
+| Embedding | Accuracy | Precision | Recall | F1-Score | ROC-AUC | Training Time |
+|-----------|----------|-----------|--------|----------|---------|---------------|
+| **TF-IDF** | **89.05%** | **88.14%** | **90.24%** | **89.18%** | **95.95%** | 64.4s |
+| GloVe | 71.24% | 64.79% | 93.06% | 76.39% | 73.58% | 216.4s |
+| Word2Vec | 55.04% | 84.33% | 12.38% | 21.59% | 69.73% | 136.9s |
+
+### LSTM Analysis
+1. **TF-IDF Dominance:** Consistent with Logistic Regression, TF-IDF performed best (89% accuracy). The sequence model (LSTM) didn't significantly outperform the simple linear model (LR) with TF-IDF, suggesting that for this dataset, keyword presence is more predictive than complex sequential dependencies.
+2. **GloVe Performance:** Pre-trained embeddings achieved decent recall (93%) but lower precision (64%), indicating the model was biased towards positive predictions or struggled to distinguish nuanced negative sentiment without fine-tuning.
+3. **Word2Vec Strategy:** Training embeddings from scratch on the small IMDB training set (35k samples) proved insufficient, yielding poor results (55%). Pre-trained word vectors or larger corpora are necessary for dense embeddings to be effective.
+
 ---
 
 ## Project Structure
@@ -380,10 +396,28 @@ All experiments use `RANDOM_SEED=42` for reproducibility. Results may vary sligh
 - `notebooks/01_EDA_IMDB.ipynb`
 - `src/preprocessing.py`, `src/evaluation.py`
 
-### Members 2-4: [To be completed by team members]
-- Member 2: LSTM implementation
-- Member 3: GRU implementation  
-- Member 4: RNN implementation
+### Member 2: BiLSTM Implementation
+- [Completed by teammate]
+- Implemented BiLSTM with TF-IDF, GloVe, Word2Vec
+
+### Member 3: LSTM Implementation (Gustav)
+- Implemented LSTM with 3 embeddings (TF-IDF, GloVe, Word2Vec)
+- **Status:** Complete
+- **Best Model:** LSTM + TF-IDF (89.05% Accuracy)
+- **Key Findings:**
+  - TF-IDF significantly outperformed heavy embeddings (GloVe/Word2Vec) on this dataset.
+  - GloVe achieved decent performance (71%) but required careful handling of sequence padding.
+  - Word2Vec trained from scratch on this small dataset struggled (55%), highlighting the need for larger corpora or pre-trained vectors.
+
+**Code Locations:**
+- `src/models/lstm_tfidf.py`
+- `src/models/lstm_glove.py`
+- `src/models/lstm_word2vec.py`
+- `src/models/compare_results_lstm.py`
+- `src/download_glove.py` (Helper script)
+
+### Member 4: GRU / RNN Implementation
+- [To be completed]
 
 ---
 

@@ -1,0 +1,39 @@
+============================================================
+LSTM TEXT CLASSIFICATION - RESULTS SUMMARY
+Group 9 - Member 2 (Gustav)
+============================================================
+
+PERFORMANCE COMPARISON
+----------------------------------------
+
+TF-IDF:
+  Accuracy:  0.8905 (89.05%)
+  Precision: 0.8814
+  Recall:    0.9024
+  F1-Score:  0.8918
+  ROC-AUC:   0.9595
+  Training:  64.43s
+
+GloVe:
+  Accuracy:  0.7124 (71.24%)
+  Precision: 0.6479
+  Recall:    0.9306
+  F1-Score:  0.7639
+  ROC-AUC:   0.7358
+  Training:  216.43s
+
+Word2Vec:
+  Accuracy:  0.5504 (55.04%)
+  Precision: 0.8433
+  Recall:    0.1238
+  F1-Score:  0.2159
+  ROC-AUC:   0.6973
+  Training:  136.86s
+
+============================================================
+BEST PERFORMER
+----------------------------------------
+Embedding: TF-IDF
+Accuracy:  0.8905 (89.05%)
+F1-Score:  0.8918
+============================================================
