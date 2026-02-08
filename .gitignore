@@ -1,7 +1,4 @@
-# Data: tracked for repo (user requested push; use Git LFS if over 100MB)
-# data/raw/*.csv
-# data/embeddings/*.txt
-data/embeddings/*.bin
+data
 *.bin
 
 # Model files (binary, regenerable)
@@ -9,6 +6,7 @@ data/embeddings/*.bin
 *.h5
 results/**/*.pkl
 results/**/*.bin
+*.keras
 
 # Python cache
 __pycache__/
